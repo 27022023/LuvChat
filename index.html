@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>LuvChat</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow: hidden;
+      position: relative;
+      color: #ffffff;
+    }
+
+    /* Background gradient: lilac, baby blue, baby pink */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at top left, #e3b8ff 0, transparent 50%),
+                  radial-gradient(circle at top right, #b8d9ff 0, transparent 50%),
+                  radial-gradient(circle at bottom, #ffbfd6 0, transparent 55%);
+      background-color: #f7e9ff;
+      z-index: -2;
+    }
+
+    /* Floating bathroom-style bubbles */
+    .bubbles {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .bubble {
+      position: absolute;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.6);
+      color: #7b5ba8;
+      font-size: 0.9rem;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+      animation: float 18s linear infinite;
+      white-space: nowrap;
+    }
+
+    .bubble:nth-child(1) { top: 70%; left: 10%; animation-duration: 22s; }
+    .bubble:nth-child(2) { top: 80%; left: 60%; animation-duration: 19s; }
+    .bubble:nth-child(3) { top: 65%; left: 35%; animation-duration: 24s; }
+    .bubble:nth-child(4) { top: 85%; left: 80%; animation-duration: 20s; }
+    .bubble:nth-child(5) { top: 75%; left: 25%; animation-duration: 26s; }
+    .bubble:nth-child(6) { top: 90%; left: 50%; animation-duration: 21s; }
+    .bubble:nth-child(7) { top: 78%; left: 72%; animation-duration: 23s; }
+    .bubble:nth-child(8) { top: 88%; left: 40%; animation-duration: 25s; }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) translateX(0);
+        opacity: 0.9;
+      }
+      50% {
+        transform: translateY(-120px) translateX(20px);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-260px) translateX(-10px);
+        opacity: 0.4;
+      }
+    }
+
+    /* Centered hero content */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    /* LuvChat logo – calligraphic style */
+    .logo {
+      font-family: "Brush Script MT", "Lucida Handwriting", cursive;
+      font-size: 4rem;
+      color: #ffffff;
+      text-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+      margin-bottom: 24px;
+    }
+
+    /* Menu button */
+    .menu-button {
+      padding: 10px 26px;
+      border-radius: 999px;
+      border: none;
+      background: rgba(255, 255, 255, 0.9);
+      color: #7b5ba8;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    }
+
+    .menu-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+      background: #ffffff;
+    }
+
+    /* Slide-down menu panel */
+    .menu-panel {
+      margin-top: 18px;
+      padding: 16px 20px;
+      border-radius: 18px;
+      background: #ffc2da; /* nice pinky colour */
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+      display: none;
+      flex-direction: column;
+      gap: 10px;
+      min-width: 220px;
+    }
+
+    .menu-panel.open {
+      display: flex;
+    }
+
+    .menu-item {
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: none;
+      background: rgba(255, 255, 255, 0.95);
+      color: #7b5ba8;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+      transition: background 0.15s ease, transform 0.15s ease;
+    }
+
+    .menu-item:hover {
+      background: #ffe6f1;
+      transform: translateY(-1px);
+    }
+  </style>
+</head>
+<body>
+  <div class="bubbles">
+    <div class="bubble">love you 💋</div>
+    <div class="bubble">hi 💕</div>
+    <div class="bubble">let's chat!!</div>
+    <div class="bubble">hey bestie</div>
+    <div class="bubble">miss you</div>
+    <div class="bubble">call me 📞</div>
+    <div class="bubble">you up?</div>
+    <div class="bubble">new post ✨</div>
+  </div>
+
+  <main class="hero">
+    <h1 class="logo">LuvChat</h1>
+    <button id="menuButton" class="menu-button">Menu</button>
+
+    <div id="menuPanel" class="menu-panel">
+      <button class="menu-item">Chat</button>
+      <button class="menu-item">Phone call</button>
+      <button class="menu-item">FaceTime call</button>
+      <button class="menu-item">Posts</button>
+    </div>
+  </main>
+
+  <script>
+    const menuButton = document.getElementById("menuButton");
+    const menuPanel = document.getElementById("menuPanel");
+
+    menuButton.addEventListener("click", () => {
+      menuPanel.classList.toggle("open");
+    });
+  </script>
+</body>
+</html>
