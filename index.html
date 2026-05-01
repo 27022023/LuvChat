@@ -27,52 +27,7 @@
                   radial-gradient(circle at top right, #b8d9ff 0, transparent 50%),
                   radial-gradient(circle at bottom, #ffbfd6 0, transparent 55%);
       background-color: #f7e9ff;
-      z-index: -2;
-    }
-
-    /* Floating bathroom-style bubbles */
-    .bubbles {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
       z-index: -1;
-    }
-
-    .bubble {
-      position: absolute;
-      padding: 10px 18px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.6);
-      color: #7b5ba8;
-      font-size: 0.9rem;
-      backdrop-filter: blur(6px);
-      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
-      animation: float 18s linear infinite;
-      white-space: nowrap;
-    }
-
-    .bubble:nth-child(1) { top: 70%; left: 10%; animation-duration: 22s; }
-    .bubble:nth-child(2) { top: 80%; left: 60%; animation-duration: 19s; }
-    .bubble:nth-child(3) { top: 65%; left: 35%; animation-duration: 24s; }
-    .bubble:nth-child(4) { top: 85%; left: 80%; animation-duration: 20s; }
-    .bubble:nth-child(5) { top: 75%; left: 25%; animation-duration: 26s; }
-    .bubble:nth-child(6) { top: 90%; left: 50%; animation-duration: 21s; }
-    .bubble:nth-child(7) { top: 78%; left: 72%; animation-duration: 23s; }
-    .bubble:nth-child(8) { top: 88%; left: 40%; animation-duration: 25s; }
-
-    @keyframes float {
-      0% {
-        transform: translateY(0) translateX(0);
-        opacity: 0.9;
-      }
-      50% {
-        transform: translateY(-120px) translateX(20px);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-260px) translateX(-10px);
-        opacity: 0.4;
-      }
     }
 
     /* Centered hero content */
@@ -87,23 +42,24 @@
       padding: 20px;
     }
 
-    /* LuvChat logo – calligraphic style */
+    /* MASSIVE LuvChat logo */
     .logo {
       font-family: "Brush Script MT", "Lucida Handwriting", cursive;
-      font-size: 4rem;
+      font-size: 18vw; /* HUGE — scales with screen width */
       color: #ffffff;
-      text-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
-      margin-bottom: 24px;
+      text-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+      margin-bottom: 40px;
+      line-height: 1;
     }
 
     /* Menu button */
     .menu-button {
-      padding: 10px 26px;
+      padding: 14px 34px;
       border-radius: 999px;
       border: none;
       background: rgba(255, 255, 255, 0.9);
       color: #7b5ba8;
-      font-size: 1rem;
+      font-size: 1.2rem;
       font-weight: 600;
       cursor: pointer;
       box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
@@ -121,7 +77,7 @@
       margin-top: 18px;
       padding: 16px 20px;
       border-radius: 18px;
-      background: #ffc2da; /* nice pinky colour */
+      background: #ffc2da; /* pinky colour */
       box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
       display: none;
       flex-direction: column;
@@ -134,12 +90,12 @@
     }
 
     .menu-item {
-      padding: 8px 14px;
+      padding: 10px 16px;
       border-radius: 999px;
       border: none;
       background: rgba(255, 255, 255, 0.95);
       color: #7b5ba8;
-      font-size: 0.95rem;
+      font-size: 1rem;
       font-weight: 600;
       cursor: pointer;
       text-align: center;
@@ -153,19 +109,10 @@
   </style>
 </head>
 <body>
-  <div class="bubbles">
-    <div class="bubble">love you 💋</div>
-    <div class="bubble">hi 💕</div>
-    <div class="bubble">let's chat!!</div>
-    <div class="bubble">hey bestie</div>
-    <div class="bubble">miss you</div>
-    <div class="bubble">call me 📞</div>
-    <div class="bubble">you up?</div>
-    <div class="bubble">new post ✨</div>
-  </div>
 
   <main class="hero">
     <h1 class="logo">LuvChat</h1>
+
     <button id="menuButton" class="menu-button">Menu</button>
 
     <div id="menuPanel" class="menu-panel">
@@ -184,5 +131,7 @@
       menuPanel.classList.toggle("open");
     });
   </script>
+
 </body>
 </html>
+          
